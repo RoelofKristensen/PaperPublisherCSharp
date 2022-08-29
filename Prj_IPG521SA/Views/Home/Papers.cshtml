@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Prj_IPG521SA.Models.Paper>
+
+@{
+    ViewBag.Title = "Submitted_Papers";
+}
+
+<h2>Submitted Papers</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperAuthor)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaperId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaperTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaperAuthor)
+    </td>
+</tr>
+}
+
+</table>

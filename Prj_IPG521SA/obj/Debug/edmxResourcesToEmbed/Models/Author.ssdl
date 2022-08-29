@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IPG521SAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Paper">
+    <Key>
+      <PropertyRef Name="PaperId" />
+    </Key>
+    <Property Name="PaperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaperTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaperAbstract" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="PaperAuthor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaperDateSubmitted" Type="date" Nullable="false" />
+    <Property Name="TopicID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'IPG521SA.dbo.Topic' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="TopicID" />
+      <PropertyRef Name="TopicName" />
+    </Key>
+    <Property Name="TopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TopicName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="IPG521SAModelStoreContainer">
+    <EntitySet Name="Paper" EntityType="Self.Paper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topic" EntityType="Self.Topic" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Topic].[TopicID] AS [TopicID], 
+    [Topic].[TopicName] AS [TopicName]
+    FROM [dbo].[Topic] AS [Topic]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
